@@ -1,3 +1,28 @@
 = issue_notifier
 
 Description goes here
+=======
+= issue_notifier
+
+A Redmine Plugin to notify assignee and watchers through push notification when an issue has been reported.
+
+= Dependency
+
+install redis with version 2.8 or higher
+
+= usage
+
+To use this as a plugin clone the repo to your redmine/plugins directory
+
+= Sending push notifications to android devices
+
+We use gcm to send notifications accross all android devices
+Obtain gcm_api_key from google developer console refer: https://developers.google.com/cloud-messaging/
+set this key in ENV['gcm_api_key']
+
+= Sending push notifications to ios devices
+
+We are using APNS to send notifications accross all ios devices
+Obtain ios certificate as a pem file
+make sure to set APNS.host and APNS.pem with valid values refer: https://github.com/jpoz/APNS
+
