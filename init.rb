@@ -1,3 +1,6 @@
+#
+# Initializer for the plugin to intialize appilciation level varaibles during the statup.
+
 require 'user_patch'
 require 'issue_patch'
 
@@ -10,6 +13,11 @@ Redmine::Plugin.register :issue_notifier do
   author_url 'https://github.com/anildias'
   menu :top_menu, :Sidekiq_Dashboard, '/sidekiq', :if => Proc.new {User.current.admin}
 end
+
+setting = YAML.load( File.open('config/settings.yml') )
+GCM_API_KEY = setting['gcm']['api_key']
+APNS.host = setting['apns']['host'] 
+APNS.pem = setting['apns']['pem']
 
 User.send(:include, UserPatch)
 Issue.send(:include, IssuePatch)

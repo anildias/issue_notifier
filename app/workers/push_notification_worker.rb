@@ -1,12 +1,20 @@
+#
 # Sidekiq worker class to process pushnotification asynchronously.
 # handles android and ios devices seperatly
-
+#
 # to send push notifications to android, gcm service is used
-# gcm_api_key should be obtained form google and set the values in ENV['gcm_api_key']
-
+# gcm_api_key should be obtained form google
+#
 # for sending ios push notifications, apns is used
-# pem file should be generated and placed
-# set APNS.host and APNS.pem
+# pem.cert file should be obtained
+#
+# Make sure to add following lines to redmine/cofig/settings.yml
+#
+# gcm:
+#   api_key: ** your api key **
+# apns:
+#   host: "gateway.push.apple.com"
+#   pem: "full_path/to/cert.pem" 
 
 require 'gcm'
 require 'apns'
@@ -19,7 +27,7 @@ class PushNotificationWorker
   end
 
   def push_to_android(device_tokens, options)
-    gcm = GCM.new(ENV['gcm_api_key'])
+    gcm = GCM.new(GCM_API_KEY)
     response = gcm.send(device_tokens, 
                         { data: { message: options["notification_msg"] } }
                       )
