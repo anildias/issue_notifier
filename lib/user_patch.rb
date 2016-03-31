@@ -1,3 +1,6 @@
+#
+# Module UserPatch is for to extend the relation for user to have ahs_many to device tokens
+#
 module UserPatch
   def self.included(base)
     # Same as typing in the class 

@@ -1,10 +1,11 @@
+#
 # Module IssuePatch enable sending push notifications to various android and ios devices.
-
+#
 # When an issue is created or updated, it will invoke the sidekiq worker
 # sidekiq worker runs along with redis and perform the task in the background.
-
+#
 # Currently push notifications can be sent to ios as well as android
-
+#
 # Sidekiq worker requires an array of device tokens as one of the parameter 
 # separate for andorid and ios in a hash
 
