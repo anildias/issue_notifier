@@ -10,13 +10,13 @@ install redis with version 2.8 or higher
 
 To use this as a plugin clone the repo to your redmine/plugins directory
 
-Make sure to add following lines to redmine/cofig/settings.yml
+Make sure to add following lines to redmine/config/settings.yml
 
-gcm:
-  api_key: ** your api key **
-apns:
-  host: "gateway.push.apple.com"
-  pem: "full_path/to/cert.pem"       
+  gcm:
+    api_key: ** your api key **
+  apns:
+    host: "gateway.push.apple.com"
+    pem: "full_path/to/cert.pem"       
 
 = Sending push notifications to android devices
 
