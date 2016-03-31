@@ -43,7 +43,7 @@ module IssuePatch
       token_hash = {}
       platform_group_tokens = users.flatten.collect{ |user| user.device_tokens }.flatten.group_by(&:platform)
       platform_group_tokens.each do |key, value|
-        token_hash["#{key}"] = value.collect(&:token)
+        token_hash["#{key}"] = value.collect(&:token).uniq
       end
       token_hash
     end

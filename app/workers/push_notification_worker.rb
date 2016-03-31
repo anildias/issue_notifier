@@ -5,7 +5,7 @@
 # gcm_api_key should be obtained form google and set the values in ENV['gcm_api_key']
 
 # for sending ios push notifications, apns is used
-# pem file should be generated and palced
+# pem file should be generated and placed
 # set APNS.host and APNS.pem
 
 require 'gcm'
