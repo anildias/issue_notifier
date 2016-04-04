@@ -27,19 +27,23 @@ class PushNotificationWorker
   end
 
   def push_to_android(device_tokens, options)
-    gcm = GCM.new(GCM_API_KEY)
-    response = gcm.send(device_tokens, 
-                        { data: { message: options["notification_msg"] } }
-                      )
+    if device_tokens
+      gcm = GCM.new(GCM_API_KEY)
+      response = gcm.send(device_tokens, 
+                          { data: { message: options["notification_msg"] } }
+                        )
+    end
   end
 
   def push_to_ios(device_tokens, options)
-    device_tokens.each do |device_token|
-      APNS.send_notification(device_token,
-                              :alert => options["notification_msg"],
-                              :sound => 'default',
-                              :other => {}
-                            )
+    if device_tokens
+      device_tokens.each do |device_token|
+        APNS.send_notification(device_token,
+                                :alert => options["notification_msg"],
+                                :sound => 'default',
+                                :other => {}
+                              )
+      end
     end
   end
 end

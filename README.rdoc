@@ -16,7 +16,11 @@ Make sure to add following lines to redmine/config/settings.yml
     api_key: ** your api key **
   apns:
     host: "gateway.push.apple.com"
-    pem: "full_path/to/cert.pem"       
+    pem: "full_path/to/cert.pem"
+
+Run sidekiq worker in background 
+
+  bundle exec sidekiq
 
 = Sending push notifications to android devices
 

@@ -29,7 +29,7 @@ module IssuePatch
     end
 
     def fetch_assignee
-      assigned_to
+      assigned_to ? [assigned_to] : []
     end
 
     def fetch_watchers
@@ -37,7 +37,7 @@ module IssuePatch
     end
 
     def fetch_users
-      [fetch_assignee] + fetch_watchers
+      fetch_assignee + fetch_watchers
     end
 
     def pluck_device_tokens_hash(users)
