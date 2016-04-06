@@ -42,8 +42,8 @@ class PushNotificationWorker
     if device_tokens
       gcm = GCM.new(GCM_API_KEY)
       response = gcm.send(device_tokens, 
-                          { data: { message: options["notification_msg"] } }
-                        )
+                            { data: { message: options["notification_msg"] } }
+                         )
     end
   end
 

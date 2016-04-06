@@ -6,7 +6,7 @@ A Redmine Plugin to notify assignee and watchers through push notification when 
 
 install redis with version 2.8 or higher
 
-= usage
+= Usage
 
 To use this as a plugin clone the repo to your redmine/plugins directory
 
