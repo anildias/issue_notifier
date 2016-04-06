@@ -10,6 +10,12 @@ install redis with version 2.8 or higher
 
 To use this as a plugin clone the repo to your redmine/plugins directory
 
+  bundle install
+
+Migrate database
+
+  bundle exec rake redmine:plugins:migrate
+
 Make sure to add following lines to redmine/config/settings.yml
 
   gcm:
@@ -31,6 +37,7 @@ Obtain gcm_api_key from google developer console refer: https://developers.googl
 
 We are using APNS to send notifications accross all ios devices
 Obtain ios certificate as a pem file
+refer: https://github.com/jpoz/APNS
 
 = Sidekiq Dashboard
 

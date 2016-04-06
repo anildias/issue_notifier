@@ -1,12 +1,19 @@
 #
 # controller to update users device tokens
 # stores users device token and device platform info.
+#
 
 class DeviceTokensController < ApplicationController
   unloadable
   before_filter :find_user
   accept_api_auth :create
 
+  #
+  # make sure to have a current user which is signed_in
+  # DeviceToken associated to the current user is created with token and platform info from client params.
+  # params = { device_token: "token", platform: "ios" or "android", key: "access key" }
+  #
+  
   def create
   	if @user
 	  	@device_token = DeviceToken.where(user: @user, 
@@ -23,6 +30,11 @@ class DeviceTokensController < ApplicationController
   end
 
   private
+
+  #
+  # calling redmine method to return current user
+  #
+
   def find_user
   	@user = find_current_user
   end

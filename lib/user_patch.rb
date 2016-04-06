@@ -1,13 +1,11 @@
 #
-# Module UserPatch is for to extend the relation for user to have ahs_many to device tokens
+# Module UserPatch is for to extend the relation for User to have has_many association to DeviceToken
 #
+
 module UserPatch
   def self.included(base)
-    # Same as typing in the class 
     base.class_eval do
-      # unloadable # Send unloadable so it will not be unloaded in development
       has_many :device_tokens
-
     end
   end
 end

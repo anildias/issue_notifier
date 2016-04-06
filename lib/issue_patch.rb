@@ -8,18 +8,27 @@
 #
 # Sidekiq worker requires an array of device tokens as one of the parameter 
 # separate for andorid and ios in a hash
+#
 
 module IssuePatch
-  def self.included(base)
-    # Same as typing in the class 
+  def self.included(base) 
     base.class_eval do
-      # unloadable # Send unloadable so it will not be unloaded in development
       after_save :send_push_notification
     end
     base.send(:include, InstanceMethods)
   end
 
+  #
+  # module to handle IssuePatch Module instance methods
+  #
+
   module InstanceMethods
+
+    #
+    # method to invoke sidekiq worker
+    # collect all device tokens and notification message to initialize worker
+    #
+
     def send_push_notification
       users = fetch_users
       device_tokens_hash = pluck_device_tokens_hash(users)
@@ -28,17 +37,34 @@ module IssuePatch
       PushNotificationWorker.perform_async(device_tokens_hash, options)
     end
 
+    #
+    # fetch assigned user of the issue
+    #
+
     def fetch_assignee
       assigned_to ? [assigned_to] : []
     end
+
+    #
+    # fetch watchers if any
+    #
 
     def fetch_watchers
       watcher_users.to_a
     end
 
+    #
+    # return an array of users consits of watchers if any and assinged user
+    #
+
     def fetch_users
       fetch_assignee + fetch_watchers
     end
+
+    #
+    # return an hash contaning separate key for both andorid and ios device tokens
+    # collect all users device tokens and assign unique device_tokens to respective keys (android and ios)
+    #
 
     def pluck_device_tokens_hash(users)
       token_hash = {}
@@ -49,6 +75,10 @@ module IssuePatch
       token_hash
     end
 
+    #
+    # returns notification message to be sent
+    #
+    
     def notification_msg
       author_name = author.firstname
       "An issue has been reported by #{author_name}"
