@@ -47,8 +47,8 @@ class PushNotificationWorker
   include Sidekiq::Worker
 
   # 
-  # sidekiq worker perform method
-  # invoke two methods to send notifications to android and ios
+  # sidekiq worker
+  # invoke two methods to send notifications to android and ios devices.
   #
 
   def perform(tokens_hash, options)
@@ -57,8 +57,8 @@ class PushNotificationWorker
   end
 
   #
-  # method send push notifications to android devices
-  # initialze GCM with API_KEY
+  # method sending push notifications to android devices
+  # initialize GCM with API_KEY
   #
 
   def push_to_android(device_tokens, options)
@@ -71,8 +71,8 @@ class PushNotificationWorker
   end
 
   #
-  # method send push notifications to ios devices
-  # loop over each device token and APNS is invoked
+  # method sending push notifications to ios devices
+  # loop over each device tokens
   #
   
   def push_to_ios(device_tokens, options)

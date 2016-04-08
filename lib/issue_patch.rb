@@ -42,14 +42,15 @@ module IssuePatch
   end
 
   #
-  # module to handle IssuePatch Module instance methods
+  # IssuePatch module
+  # after_save callback is written to send push notification for an issue
   #
 
   module InstanceMethods
 
     #
     # method to invoke sidekiq worker
-    # collect all device tokens and notification message to initialize worker
+    # unique device tokens and notification message are passed to initialize the sidekiq worker
     #
 
     def send_push_notification
@@ -77,7 +78,7 @@ module IssuePatch
     end
 
     #
-    # return an array of users consits of watchers if any and assinged user
+    # return an array of users consists of watchers if any along with assinged user
     #
 
     def fetch_users
@@ -85,7 +86,7 @@ module IssuePatch
     end
 
     #
-    # return an hash contaning separate key for both andorid and ios device tokens
+    # return an hash contaning separate keys for both andorid and ios device tokens
     # collect all users device tokens and assign unique device_tokens to respective keys (android and ios)
     #
 

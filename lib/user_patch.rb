@@ -22,7 +22,8 @@ See the License for the specific language governing permissions and limitations 
 =end
 
 #
-# Module UserPatch is for to extend the relation for User to have has_many association to DeviceToken
+# Module UserPatch
+# extending User class to have 'has_many' association to DeviceToken
 #
 
 module UserPatch
