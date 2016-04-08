@@ -32,7 +32,9 @@ Run sidekiq worker in background
 
 We use gcm to send notifications accross all android devices
 
-Obtain gcm_api_key from google developer console refer: https://developers.google.com/cloud-messaging/
+Obtain gcm_api_key from google developer console 
+
+refer: https://developers.google.com/cloud-messaging/
 
 = Sending push notifications to ios devices
 
