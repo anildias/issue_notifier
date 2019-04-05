@@ -61,7 +61,7 @@ Call API
   /users/device_tokens.json
 
 
-  parameters: 
+parameters: 
 
     {
       key: <user's api_key>,
