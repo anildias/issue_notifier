@@ -28,5 +28,26 @@ See the License for the specific language governing permissions and limitations 
 
 class DeviceToken < ActiveRecord::Base
   belongs_to :user
-  validates_uniqueness_of :token, :scope => :user_id
+  validates_uniqueness_of :token, :scope => [:user_id, :platform]
+  validate :device_type
+
+  ALLOWED_DEVICES = ["ios", "android"]
+
+  def self.init(params, user)
+    token = DeviceToken.new(  user_id: user.id, 
+                              token: params[:device_token], 
+                              platform: params[:platform] )
+  end
+
+  def device_type
+    if platform.present?
+      unless ALLOWED_DEVICES.include?(platform)
+        errors.add(:platform, 'Invalid device type, - platform parameter - 
+                                allowed only ios and android')
+      end
+    else
+      errors.add(:platform, 'specify device type - platform parameter - 
+                              allowed only ios and android')
+    end
+  end
 end

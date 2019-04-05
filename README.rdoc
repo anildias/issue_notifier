@@ -52,6 +52,23 @@ Sidekiq dashboard is added as link to top menu for admin.
 
 refer: http://sidekiq.org/
 
+= To register device tokens in database
+	
+  Need to enable rest api in settings under administration tab
+
+Call API
+
+  /users/device_tokens.json
+
+
+  parameters: 
+
+    {
+      key: <user's api_key>,
+      device_token: <device token>,
+      platform: "ios" or "android"
+    }
+
 = License
 
 Apache License
