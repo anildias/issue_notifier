@@ -39,10 +39,8 @@ class DeviceTokensController < ApplicationController
   
   def create
     if @user
-      @device_token = DeviceToken.where(user: @user, 
-                                        token: params[:device_token], 
-                                        platform: params[:platform]).first_or_create
-      if @device_token
+      @device_token = DeviceToken.init(params, @user)
+      if @device_token.save
         render json: { status: 200, msg: "successfull", device_token: @device_token.token }
       else
         render json: { status: 400, msg: "unsuccessfull", errors: @device_token.errors.messages }

@@ -28,11 +28,19 @@ Sidekiq::Testing.fake!
 
 class IssuePatchTest < ActiveSupport::TestCase
 
+  #
+  # test worker to enque a job when issue has been updated or created
+  #
+
   def test_issue_creation_should_enque_job
     assert_difference "PushNotificationWorker.jobs.size", +1 do
       issue = Issue.generate!({})
     end
   end
+
+  #
+  # test worker directly
+  #
 
   def test_worker
     assert_difference "PushNotificationWorker.jobs.size", +1 do

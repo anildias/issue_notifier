@@ -32,7 +32,9 @@ Run sidekiq worker in background
 
 We use gcm to send notifications accross all android devices
 
-Obtain gcm_api_key from google developer console refer: https://developers.google.com/cloud-messaging/
+Obtain gcm_api_key from google developer console 
+
+refer: https://developers.google.com/cloud-messaging/
 
 = Sending push notifications to ios devices
 
@@ -49,6 +51,23 @@ For monitoring background process, Admin can able to access the sidekiq dashboar
 Sidekiq dashboard is added as link to top menu for admin.
 
 refer: http://sidekiq.org/
+
+= To register device tokens in database
+	
+  Need to enable rest api in settings under administration tab
+
+Call API
+
+  /users/device_tokens.json
+
+
+  parameters: 
+
+    {
+      key: <user's api_key>,
+      device_token: <device token>,
+      platform: "ios" or "android"
+    }
 
 = License
 

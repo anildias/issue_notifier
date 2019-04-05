@@ -23,7 +23,7 @@ See the License for the specific language governing permissions and limitations 
 
 #
 # extend User class to have a one-to-many relationship with DeviceToken
-# extend Issue class to execute worker to send push notification when an issue has been reported or changed.
+# extend Issue class to have a callback to be executed which send push notifications.
 #
 
 require 'user_patch'

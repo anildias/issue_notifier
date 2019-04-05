@@ -25,6 +25,10 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class DeviceTokenTest < ActiveSupport::TestCase
 
+  #
+  # test DeviceToken validation
+  #
+
   def test_validation
     user = User.generate!({})
     token = DeviceToken.new(token: "token1", platform: "ios", user: user)
@@ -35,6 +39,10 @@ class DeviceTokenTest < ActiveSupport::TestCase
     token.save
     assert_equal false, token.valid?
   end
+
+  #
+  # test DeviceToken invalidate message to be shown
+  #
 
   def test_validation_message
     user = User.generate!({})

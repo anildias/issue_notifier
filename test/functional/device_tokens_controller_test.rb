@@ -25,6 +25,10 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class DeviceTokensControllerTest < ActionController::TestCase
 
+  #
+  # test with valid key
+  #
+
   def test_create
     user = User.generate!({})
     json = { device_token: "token1", platform: "ios", key: user.api_key }
@@ -32,6 +36,10 @@ class DeviceTokensControllerTest < ActionController::TestCase
     assert_response 200
     assert_not_nil DeviceToken.find_by(token: "token1")
   end
+
+  #
+  # test with invalid key
+  #
 
   def test_create_with_invalid_key
     json = { device_token: "token1", platform: "ios", key: "key" }
